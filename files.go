@@ -3,11 +3,27 @@ package utils
 import (
 	"bytes"
 	"encoding/csv"
+	"encoding/json"
+	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
 )
+
+func OpenJSON(fileName string) (ret interface{}) {
+	file, err := ioutil.ReadFile("./" + fileName + ".json")
+	if err != nil {
+		fmt.Printf("File error: %v\n", err)
+		os.Exit(1)
+	}
+
+	err = json.Unmarshal(file, &ret)
+	CheckErr(err)
+
+	return ret
+}
 
 func OpenCSV(fileName string) (ret [][]float64) {
 	csvfile, err := os.Open(fileName + ".csv")
