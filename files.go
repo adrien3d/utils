@@ -25,6 +25,17 @@ func OpenJSON(fileName string) (ret interface{}) {
 	return ret
 }
 
+func SaveJSON(fileName string, data interface{}, separator string) {
+	f, err := os.Create(fileName + ".json")
+	CheckErr(err)
+	defer f.Close()
+
+	out, err := json.MarshalIndent(data, "", separator)
+	CheckErr(err)
+	_, err = f.WriteString(string(out))
+	CheckErr(err)
+}
+
 func OpenCSV(fileName string) (ret [][]float64) {
 	csvfile, err := os.Open(fileName + ".csv")
 	if err != nil {
