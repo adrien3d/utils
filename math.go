@@ -18,6 +18,13 @@ func Haversine(lonFrom float64, latFrom float64, lonTo float64, latTo float64) (
 	return
 }
 
+func Abs(i int) int {
+	if i < 0 {
+		return -i
+	}
+	return i
+}
+
 /*
 func Distance(origin, position Point) float64 {
 	origin = origin.toRadians()
